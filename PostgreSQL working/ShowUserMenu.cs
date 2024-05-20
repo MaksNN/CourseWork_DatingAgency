@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using PasswordValidity;
 
 namespace PostgreSQL_working
 {
@@ -155,7 +156,7 @@ namespace PostgreSQL_working
 
         private ArrayList FindUser(string query, List<object[]> parametres = null)
         {
-            NpgsqlConnection con = new NpgsqlConnection($"Server=localhost;Port=5432;User ID=maksNN;Password=maksNN;Database=Dating_Agency;");
+            NpgsqlConnection con = new NpgsqlConnection($"Server=localhost;Port=5433;User ID=maksNN;Password=maksNN;Database=Dating_Agency;");
             con.Open();
             NpgsqlCommand cmd = new NpgsqlCommand(query, con);
             if (parametres != null)
@@ -345,7 +346,7 @@ namespace PostgreSQL_working
                 table_privileges.Add(SetUserPrivilege(checkedListBox3));
                 table_privileges.Add(SetUserPrivilege(checkedListBox4));
 
-                NpgsqlConnection con = new NpgsqlConnection($"Server=localhost;Port=5432;User ID=maksNN;Password=maksNN;Database=Dating_Agency;");
+                NpgsqlConnection con = new NpgsqlConnection($"Server=localhost;Port=5433;User ID=maksNN;Password=maksNN;Database=Dating_Agency;");
                 con.Open();
 
                 NpgsqlCommand cmd = new NpgsqlCommand($"SELECT * FROM positions_directory WHERE position = @position", con);
@@ -435,7 +436,7 @@ namespace PostgreSQL_working
 
         private void DeleteUser()
         {
-            NpgsqlConnection con = new NpgsqlConnection($"Server=localhost;Port=5432;User ID=maksNN;Password=maksNN;Database=Dating_Agency;");
+            NpgsqlConnection con = new NpgsqlConnection($"Server=localhost;Port=5433;User ID=maksNN;Password=maksNN;Database=Dating_Agency;");
             con.Open();
             NpgsqlCommand cmd = new NpgsqlCommand($"DELETE FROM users_privilege WHERE user_id={current_user_id}; DELETE FROM users WHERE user_id={current_user_id};", con);
             cmd.ExecuteNonQuery();
@@ -520,6 +521,18 @@ namespace PostgreSQL_working
         {
             // TODO: данная строка кода позволяет загрузить данные в таблицу "dataSet1.positions_directory". При необходимости она может быть перемещена или удалена.
             this.positions_directoryTableAdapter.Fill(this.dataSet1.positions_directory);
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            if (Password.CheckPasswordValidation(textBox5.Text))
+            {
+                textBox5.BackColor = Color.FromArgb(255, 34, 94, 121);
+            }
+            else
+            {
+                textBox5.BackColor = Color.Red;
+            }
         }
     }
 }

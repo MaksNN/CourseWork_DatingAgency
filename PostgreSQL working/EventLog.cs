@@ -12,7 +12,7 @@ namespace PostgreSQL_working
     {
         public static void AddEventLogInfo(string operation)
         {
-            NpgsqlConnection con = new NpgsqlConnection($"Server=localhost;Port=5432;User ID=maksNN;Password=maksNN;Database=Dating_Agency;");
+            NpgsqlConnection con = new NpgsqlConnection($"Server=localhost;Port=5433;User ID=maksNN;Password=maksNN;Database=Dating_Agency;");
             con.Open();
             NpgsqlCommand cmd = new NpgsqlCommand($"INSERT INTO event_log(user_login, user_surname, user_name, user_patronymic, event_data, event_time, operation) " +
                                                   $"VALUES('{User.CheckSettings("login")}', '{User.CheckSettings("surname")}', '{User.CheckSettings("name")}', '{User.CheckSettings("patronymic")}', @event_data, @event_time, '{operation}')", con);

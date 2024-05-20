@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using PasswordValidity;
 
 namespace PostgreSQL_working
 {
@@ -114,7 +116,7 @@ namespace PostgreSQL_working
 
         public void AddNewUser()
         {
-            NpgsqlConnection con = new NpgsqlConnection($"Server=localhost;Port=5432;User ID=maksNN;Password=maksNN;Database=Dating_Agency;");
+            NpgsqlConnection con = new NpgsqlConnection($"Server=localhost;Port=5433;User ID=maksNN;Password=maksNN;Database=Dating_Agency;");
             con.Open();
             NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM positions_directory", con);
             NpgsqlDataReader dr = cmd.ExecuteReader();
@@ -211,6 +213,18 @@ namespace PostgreSQL_working
         private void button2_Click(object sender, EventArgs e)
         {
             pictureBox1.Image = null;
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            if (Password.CheckPasswordValidation(textBox5.Text))
+            {
+                textBox5.BackColor = Color.FromArgb(255, 34, 94, 121);
+            }
+            else
+            {
+                textBox5.BackColor = Color.Red;
+            }
         }
     }
 }

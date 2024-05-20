@@ -48,9 +48,9 @@
             this.label1.ForeColor = System.Drawing.Color.Gainsboro;
             this.label1.Location = new System.Drawing.Point(30, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(416, 39);
+            this.label1.Size = new System.Drawing.Size(428, 39);
             this.label1.TabIndex = 0;
-            this.label1.Text = "База данных \"Агенство знакомств\"";
+            this.label1.Text = "База данных \"Агентство знакомств\"";
             // 
             // textBox1
             // 

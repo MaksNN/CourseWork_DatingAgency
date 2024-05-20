@@ -23,7 +23,7 @@ namespace PostgreSQL_working
     public partial class DatabaseWorkingMenu : Form
     {
         private NpgsqlConnection con = new NpgsqlConnection($"Server=localhost;" +
-                                                            $"Port=5432;" +
+                                                            $"Port=5433;" +
                                                             $"User ID=maksNN;" +
                                                             $"Password=maksNN;" +
                                                             $"Database=Dating_Agency;");
